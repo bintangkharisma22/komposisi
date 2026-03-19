@@ -15,6 +15,210 @@
   box-sizing: border-box;
 }
 
+/* ===================== LOADING SCREEN ===================== */
+#loadingScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#loadingScreen.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.ls-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(150deg, #b01010 0%, #D42B2B 45%, #F47920 100%);
+}
+
+.ls-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(255, 100, 0, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(180, 0, 0, 0.4) 0%, transparent 60%);
+}
+
+.ls-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Badge */
+.ls-badge {
+  background: var(--yellow);
+  color: var(--brown);
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 7px 22px;
+  border-radius: 50px;
+  animation: lsFadeDown 0.5s ease 0.1s both;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo wrapper */
+.ls-logo-wrap {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lsFadeDown 0.6s ease 0.2s both;
+  margin: 8px 0;
+}
+
+.ls-logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--yellow);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  animation: lsLogoPulse 2s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.ls-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  animation: lsSpin 2s linear infinite;
+}
+
+.ls-ring1 {
+  width: 168px;
+  height: 168px;
+  border-top-color: var(--yellow);
+  border-right-color: rgba(245, 197, 24, 0.4);
+  animation-duration: 1.8s;
+}
+
+.ls-ring2 {
+  width: 185px;
+  height: 185px;
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  border-left-color: rgba(255, 255, 255, 0.1);
+  animation-duration: 2.5s;
+  animation-direction: reverse;
+}
+
+/* Title */
+.ls-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(44px, 12vw, 72px);
+  color: white;
+  line-height: 1;
+  text-shadow: 3px 5px 0 rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 200, 0, 0.2);
+  animation: lsFadeUp 0.6s ease 0.3s both;
+}
+
+.ls-title span {
+  color: var(--yellow);
+  -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.15);
+}
+
+/* Tagline */
+.ls-tagline {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(15px, 4vw, 20px);
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 5px 20px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  animation: lsFadeUp 0.6s ease 0.45s both;
+}
+
+/* Progress bar */
+.ls-bar-wrap {
+  width: min(260px, 70vw);
+  height: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 20px;
+  animation: lsFadeUp 0.5s ease 0.5s both;
+}
+
+.ls-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--yellow), #fff);
+  border-radius: 99px;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(245, 197, 24, 0.6);
+}
+
+/* Loading animations */
+@keyframes lsFadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lsFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lsLogoPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes lsSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================================== */
+
+
 body {
   background: var(--cream);
   font-family: 'Nunito', sans-serif;

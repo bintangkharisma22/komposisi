@@ -12,6 +12,25 @@
 
 <body>
 
+  <!-- ===================== LOADING SCREEN ===================== -->
+  <div id="loadingScreen">
+    <div class="ls-bg"></div>
+    <div class="ls-content">
+      <div class="ls-badge">PRODUK ASLI INDONESIA</div>
+      <div class="ls-logo-wrap">
+        <img src="img/logo.jpeg" alt="Logo Mie Blast" class="ls-logo">
+        <div class="ls-ring ls-ring1"></div>
+        <div class="ls-ring ls-ring2"></div>
+      </div>
+      <div class="ls-title">MIE <span>BLAST</span></div>
+      <div class="ls-tagline">✨ Mienya Nagih Banget!</div>
+      <div class="ls-bar-wrap">
+        <div class="ls-bar" id="lsBar"></div>
+      </div>
+    </div>
+  </div>
+  <!-- ========================================================= -->
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-badge">Produk Asli Indonesia</div>
@@ -434,6 +453,43 @@
       }
     }
     drawQRHalal();
+
+    /* ===== LOADING SCREEN CONTROLLER ===== */
+    (function () {
+      var screen = document.getElementById('loadingScreen');
+      var bar = document.getElementById('lsBar');
+      var prog = 0;
+      var done = false;
+
+      // Animate progress bar 0 → 100 over ~1800ms
+      var interval = setInterval(function () {
+        // Speed is faster at start, slows near end
+        var step = prog < 70 ? 2.5 : prog < 90 ? 1 : 0.4;
+        prog = Math.min(prog + step, 99);
+        bar.style.width = prog + '%';
+      }, 20);
+
+      function dismiss() {
+        if (done) return;
+        done = true;
+        clearInterval(interval);
+        bar.style.width = '100%';
+        setTimeout(function () {
+          screen.classList.add('hide');
+          // Remove from DOM after transition finishes
+          setTimeout(function () {
+            if (screen.parentNode) screen.parentNode.removeChild(screen);
+          }, 700);
+        }, 300);
+      }
+
+      // Dismiss when page fully loaded, minimum 3s to show branding
+      var minTime = setTimeout(dismiss, 3000);
+      window.addEventListener('load', function () {
+        setTimeout(dismiss, 3000);
+      });
+    })();
+    /* ====================================== */
   </script>
 </body>
 
