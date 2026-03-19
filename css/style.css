@@ -131,6 +131,16 @@ body {
   padding: 60px 20px;
 }
 
+/* INFORMASI PRODUSEN */
+.produsen-section {
+  padding: 0 0 60px;
+}
+
+/* KODE & SERTIFIKASI */
+.sertifikasi-section {
+  padding: 0 0 60px;
+}
+
 .steps-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
