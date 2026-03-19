@@ -1,187 +1,658 @@
 :root {
-    --red: #C8181A;
-    --red2: #A01010;
-    --yellow: #F5C518;
-    --orange: #F47920;
-    --cream: #FFF8EE;
-    --brown: #5C2B00;
-    --green: #2D7A2D;
-    --white: #FFFFFF;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--cream); font-family: 'Nunito', sans-serif; overflow-x: hidden; }
+  --red: #C8181A;
+  --red2: #A01010;
+  --yellow: #F5C518;
+  --orange: #F47920;
+  --cream: #FFF8EE;
+  --brown: #5C2B00;
+  --green: #2D7A2D;
+  --white: #FFFFFF;
+}
 
-  /* HERO */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--cream);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(150deg, #b01010 0%, #D42B2B 40%, #F47920 100%);
+  padding: 50px 20px 90px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-logo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35), 0 0 0 3px var(--yellow);
+  animation: popIn 0.7s cubic-bezier(.34, 1.56, .64, 1) both;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--brown);
+  font-family: 'Fredoka One', cursive;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 5px 18px;
+  border-radius: 50px;
+  margin-bottom: 16px;
+  animation: fadeDown 0.5s ease both;
+}
+
+.hero h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(58px, 13vw, 120px);
+  color: white;
+  line-height: 0.9;
+  text-shadow: 4px 6px 0 rgba(0, 0, 0, 0.25), 0 0 40px rgba(255, 200, 0, 0.3);
+  animation: fadeDown 0.6s ease both;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 .yellow {
+  color: var(--yellow);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero-tagline {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(18px, 4vw, 28px);
+  color: rgba(255, 255, 255, 0.95);
+  margin-top: 10px;
+  letter-spacing: 1px;
+  animation: fadeDown 0.75s ease both;
+  background: rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  padding: 4px 20px;
+  border-radius: 50px;
+}
+
+.wave {
+  display: block;
+  width: 100%;
+  height: 60px;
+  background: var(--cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+  margin-top: -2px;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 30px;
+  color: var(--red);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 3px;
+  background: linear-gradient(to right, var(--red), transparent);
+  border-radius: 2px;
+}
+
+/* KOMPOSISI (step card style) */
+.penyajian-section {
+  padding: 60px 20px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.step-card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  border-left: 5px solid var(--orange);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: fadeUp 0.5s ease both;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.step-num {
+  font-family: 'Fredoka One', cursive;
+  font-size: 42px;
+  color: var(--yellow);
+  line-height: 1;
+  -webkit-text-stroke: 2px var(--orange);
+}
+
+.k-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 24px;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+
+.step-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brown);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* NILAI GIZI */
+.komposisi-section {
+  background: linear-gradient(135deg, var(--brown) 0%, #3a1a00 100%);
+  padding: 70px 20px;
+  clip-path: polygon(0 30px, 100% 0, 100% calc(100% - 30px), 0 100%);
+  margin: 20px 0;
+}
+
+.komposisi-section .section-title {
+  color: var(--yellow);
+}
+
+.komposisi-section .section-title::after {
+  background: linear-gradient(to right, var(--yellow), transparent);
+}
+
+.komposisi-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.k-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 22px;
+  color: white;
+  transition: background 0.25s;
+}
+
+.k-card:hover {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.k-card-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 18px;
+  color: var(--yellow);
+  margin-bottom: 10px;
+}
+
+.k-card-body {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+/* NILAI GIZI */
+.gizi-section {
+  padding: 60px 20px;
+}
+
+.gizi-header {
+  background: var(--red);
+  color: white;
+  border-radius: 20px 20px 0 0;
+  padding: 22px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.gizi-header-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px;
+}
+
+.gizi-meta {
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0.9;
+  line-height: 1.8;
+}
+
+.gizi-body {
+  background: white;
+  border: 3px solid var(--red);
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+}
+
+.gizi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 28px;
+  border-bottom: 1px solid #f0e8df;
+  transition: background 0.15s;
+}
+
+.gizi-row:last-child {
+  border-bottom: none;
+}
+
+.gizi-row:hover {
+  background: #fff5ec;
+}
+
+.gizi-label {
+  font-weight: 700;
+  color: var(--brown);
+  font-size: 14px;
+}
+
+.gizi-value {
+  font-weight: 800;
+  color: var(--red);
+  font-size: 15px;
+}
+
+.gizi-bar-wrap {
+  flex: 1;
+  margin: 0 18px;
+  height: 8px;
+  background: #f0e8df;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.gizi-bar {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(to right, var(--orange), var(--red));
+  transition: width 1.2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.gizi-pct {
+  font-weight: 900;
+  font-size: 13px;
+  color: #888;
+  min-width: 40px;
+  text-align: right;
+}
+
+.vitamin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  padding: 20px 28px 28px;
+  background: #fff5ec;
+}
+
+.vit-pill {
+  background: white;
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  border-bottom: 3px solid var(--orange);
+}
+
+.vit-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.vit-pct {
+  font-family: 'Fredoka One', cursive;
+  font-size: 32px;
+  color: var(--red);
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.vit-pct small {
+  font-size: 16px;
+}
+
+/* DISCLAIMER */
+.disclaimer-wrapper {
+  padding: 0 0 40px;
+}
+
+.disclaimer {
+  background: var(--yellow);
+  padding: 24px 28px;
+  border-radius: 16px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 4px 20px rgba(245, 197, 24, 0.35);
+}
+
+.disclaimer-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.disclaimer-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brown);
+  line-height: 1.6;
+}
+
+.disclaimer-text strong {
+  font-size: 15px;
+  display: block;
+  margin-bottom: 4px;
+  font-family: 'Fredoka One', cursive;
+}
+
+/* FOOTER */
+footer {
+  background: var(--brown);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.footer-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--yellow);
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+footer .brand {
+  font-family: 'Fredoka One', cursive;
+  font-size: 28px;
+  color: var(--yellow);
+}
+
+footer p {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* ANIMATIONS */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.4);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================
+     TABLET (601–900px)
+  ===================== */
+@media(max-width:900px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+/* =====================
+     MOBILE (≤600px)
+  ===================== */
+@media(max-width:600px) {
+
+  /* --- Container padding --- */
+  .container {
+    padding: 0 16px;
+  }
+
+  /* --- Hero --- */
   .hero {
-    background: linear-gradient(150deg, #b01010 0%, #D42B2B 40%, #F47920 100%);
-    padding: 50px 20px 90px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 40px 16px 80px;
   }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
-  }
+
   .hero-logo {
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 6px solid rgba(255,255,255,0.3);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 3px var(--yellow);
-    animation: popIn 0.7s cubic-bezier(.34,1.56,.64,1) both;
-    position: relative; z-index: 1;
+    width: 140px;
+    height: 140px;
   }
-  .hero-badge {
-    display: inline-block;
-    background: var(--yellow);
-    color: var(--brown);
-    font-family: 'Fredoka One', cursive;
-    font-size: 12px; letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 5px 18px; border-radius: 50px;
-    margin-bottom: 16px;
-    animation: fadeDown 0.5s ease both;
-  }
+
   .hero h1 {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(58px, 13vw, 120px);
-    color: white;
-    line-height: 0.9;
-    text-shadow: 4px 6px 0 rgba(0,0,0,0.25), 0 0 40px rgba(255,200,0,0.3);
-    animation: fadeDown 0.6s ease both;
-    position: relative; z-index: 1;
-  }
-  .hero h1 .yellow { color: var(--yellow); -webkit-text-stroke: 2px rgba(0,0,0,0.1); }
-  .hero-tagline {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(18px, 4vw, 28px);
-    color: rgba(255,255,255,0.95);
-    margin-top: 10px;
-    letter-spacing: 1px;
-    animation: fadeDown 0.75s ease both;
-    background: rgba(0,0,0,0.15); display: inline-block;
-    padding: 4px 20px; border-radius: 50px;
-  }
-  .wave {
-    display: block; width: 100%; height: 60px;
-    background: var(--cream);
-    clip-path: ellipse(55% 100% at 50% 100%);
-    margin-top: -2px;
+    font-size: clamp(46px, 14vw, 80px);
   }
 
-  /* LAYOUT */
-  .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  /* --- Section titles --- */
   .section-title {
-    font-family: 'Fredoka One', cursive;
-    font-size: 30px; color: var(--red);
-    margin-bottom: 20px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .section-title::after {
-    content: ''; flex: 1; height: 3px;
-    background: linear-gradient(to right, var(--red), transparent);
-    border-radius: 2px;
+    font-size: 24px;
   }
 
-  /* KOMPOSISI (step card style) */
-  .penyajian-section { padding: 60px 20px; }
-  .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 16px; }
-  .step-card {
-    background: white; border-radius: 20px; padding: 24px 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-    border-left: 5px solid var(--orange);
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: fadeUp 0.5s ease both;
+  /* --- Komposisi / Step Cards --- */
+  .penyajian-section {
+    padding: 40px 0;
   }
-  .step-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
-  .step-num { font-family: 'Fredoka One', cursive; font-size: 42px; color: var(--yellow); line-height: 1; -webkit-text-stroke: 2px var(--orange); }
-  .k-title { font-family: 'Fredoka One', cursive; font-size: 24px; color: var(--orange); margin-bottom: 10px; }
-  .step-text { font-size: 14px; font-weight: 600; color: var(--brown); margin-top: 8px; line-height: 1.6; }
 
-  /* NILAI GIZI */
-  .komposisi-section {
-    background: linear-gradient(135deg, var(--brown) 0%, #3a1a00 100%);
-    padding: 70px 20px;
-    clip-path: polygon(0 30px, 100% 0, 100% calc(100% - 30px), 0 100%);
-    margin: 20px 0;
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
-  .komposisi-section .section-title { color: var(--yellow); }
-  .komposisi-section .section-title::after { background: linear-gradient(to right, var(--yellow), transparent); }
-  .komposisi-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 16px; }
-  .k-card {
-    background: rgba(255,255,255,0.08); backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 16px; padding: 22px; color: white; transition: background 0.25s;
-  }
-  .k-card:hover { background: rgba(255,255,255,0.13); }
-  .k-card-title { font-family: 'Fredoka One', cursive; font-size: 18px; color: var(--yellow); margin-bottom: 10px; }
-  .k-card-body { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.85); font-weight: 600; }
 
-  /* NILAI GIZI */
-  .gizi-section { padding: 60px 20px; }
+  /* --- Nilai Gizi --- */
+  .gizi-section {
+    padding: 40px 0;
+  }
+
   .gizi-header {
-    background: var(--red); color: white;
-    border-radius: 20px 20px 0 0; padding: 22px 28px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 16px;
+    padding: 18px 20px;
+    flex-direction: column;
+    align-items: flex-start;
   }
-  .gizi-header-title { font-family: 'Fredoka One', cursive; font-size: 28px; }
-  .gizi-meta { font-size: 13px; font-weight: 700; opacity: 0.9; line-height: 1.8; }
-  .gizi-body { background: white; border: 3px solid var(--red); border-top: none; border-radius: 0 0 20px 20px; overflow: hidden; }
-  .gizi-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 28px; border-bottom: 1px solid #f0e8df; transition: background 0.15s; }
-  .gizi-row:last-child { border-bottom: none; }
-  .gizi-row:hover { background: #fff5ec; }
-  .gizi-label { font-weight: 700; color: var(--brown); font-size: 14px; }
-  .gizi-value { font-weight: 800; color: var(--red); font-size: 15px; }
-  .gizi-bar-wrap { flex: 1; margin: 0 18px; height: 8px; background: #f0e8df; border-radius: 99px; overflow: hidden; }
-  .gizi-bar { height: 100%; border-radius: 99px; background: linear-gradient(to right, var(--orange), var(--red)); transition: width 1.2s cubic-bezier(.4,0,.2,1); }
-  .gizi-pct { font-weight: 900; font-size: 13px; color: #888; min-width: 40px; text-align: right; }
-  .vitamin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 12px; padding: 20px 28px 28px; background: #fff5ec; }
-  .vit-pill { background: white; border-radius: 12px; padding: 14px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-bottom: 3px solid var(--orange); }
-  .vit-name { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-  .vit-pct { font-family: 'Fredoka One', cursive; font-size: 32px; color: var(--red); line-height: 1; margin-top: 4px; }
-  .vit-pct small { font-size: 16px; }
 
-  /* DISCLAIMER */
+  .gizi-header-title {
+    font-size: 22px;
+  }
+
+  .gizi-row {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .gizi-label {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  .gizi-bar-wrap {
+    flex: 1;
+    margin: 0 10px 0 0;
+  }
+
+  .gizi-value {
+    font-size: 14px;
+  }
+
+  .gizi-pct {
+    font-size: 12px;
+    min-width: 36px;
+  }
+
+  .vitamin-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .vit-pct {
+    font-size: 26px;
+  }
+
+  /* --- Disclaimer --- */
   .disclaimer {
-    background: var(--yellow); padding: 24px 28px; border-radius: 16px;
-    display: flex; gap: 16px; align-items: flex-start;
-    margin: 0 20px 40px;
-    box-shadow: 0 4px 20px rgba(245,197,24,0.35);
+    padding: 18px 20px;
   }
-  .disclaimer-icon { font-size: 32px; flex-shrink: 0; }
-  .disclaimer-text { font-size: 13px; font-weight: 700; color: var(--brown); line-height: 1.6; }
-  .disclaimer-text strong { font-size: 15px; display: block; margin-bottom: 4px; font-family: 'Fredoka One', cursive; }
 
-  /* FOOTER */
+  .disclaimer-icon {
+    font-size: 26px;
+  }
+
+  .disclaimer-text {
+    font-size: 12px;
+  }
+
+  .disclaimer-text strong {
+    font-size: 14px;
+  }
+
+  /* --- Informasi Produsen (inline-style grid) --- */
+  .produsen-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Kode & Sertifikasi -- Barcode Row stack --- */
+  .barcode-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    padding: 20px !important;
+  }
+
+  .barcode-divider {
+    display: none !important;
+  }
+
+  .barcode-info {
+    width: 100% !important;
+    min-width: unset !important;
+    flex: none !important;
+  }
+
+  /* Barcode canvas — prevent overflow on small screens */
+  #barcodeCanvas {
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Barcode digits — smaller on mobile to avoid overlap */
+  .barcode-digits {
+    font-size: 12px !important;
+    letter-spacing: 2px !important;
+    word-break: break-all;
+  }
+
+  .sertifikasi-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Footer --- */
   footer {
-    background: var(--brown); color: white;
-    text-align: center; padding: 40px 20px;
+    padding: 32px 16px;
   }
-  .footer-logo {
-    width: 80px; height: 80px;
-    border-radius: 50%; object-fit: cover;
-    border: 3px solid var(--yellow);
-    margin-bottom: 12px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+
+  footer .brand {
+    font-size: 22px;
   }
-  footer .brand { font-family: 'Fredoka One', cursive; font-size: 28px; color: var(--yellow); }
-  footer p { font-size: 13px; opacity: 0.7; margin-top: 6px; font-weight: 600; }
-
-  /* ANIMATIONS */
-  @keyframes fadeDown { from { opacity:0; transform:translateY(-24px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes popIn { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
-  @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.5;transform:scale(1.4);} }
-
-  .fade-in { opacity:0; transform:translateY(30px); transition:opacity 0.6s ease,transform 0.6s ease; }
-  .fade-in.visible { opacity:1; transform:translateY(0); }
-
-  @media(max-width:600px){
-    .gizi-row { padding:12px 16px; }
-    .vitamin-grid { padding:16px; }
-    .disclaimer { margin:0 12px 40px; }
-  }
+}
